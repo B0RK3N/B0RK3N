@@ -1,42 +1,26 @@
-<p align="center"><img src="./assets/banner.svg" alt="B0RK3N — Learning by building. Web development and useful projects." width="100%"></p>
+<p align="center"><img src="./assets/banner.svg" alt="B0RK3N — build in the shadows, ship in the open" width="100%"></p>
 
-<p align="center"><b>Learning web development. Turning ideas into working projects.</b></p>
-<p align="center"><a href="https://github.com/B0RK3N/factoura">Explore my project</a> · <a href="https://factoura-freelance.blond-jay-1497.chatgpt.site/">Try the live demo</a></p>
+<p align="center"><strong>Learning web development by building real things.</strong></p>
+<p align="center"><a href="https://b0rk3n.github.io">Live project</a> · <a href="https://github.com/B0RK3N/B0RK3N.github.io">Source code</a> · <a href="https://github.com/B0RK3N?tab=repositories">All repositories</a></p>
 
-## Hey, I'm B0RK3N 👋
+## Who's behind the screen?
 
-I'm learning web development by building things people can try. This profile is where I share my projects, document what I'm learning, and improve one feature at a time.
+I'm **B0RK3N**, learning to turn ideas into useful web projects. I like dark interfaces, sharp details, and software that actually works. I'm building in public so I can learn from each release.
 
-### Featured project · Factoura
+```text
+CURRENT SIGNAL  /  HTML · CSS · JavaScript
+CURRENT BUILD   /  B0RK3N Invoice Lab
+NEXT TARGET     /  stronger frontend skills and a first backend
+```
 
-A quote and invoice app for freelancers in Tunisia, built with **HTML, CSS, and JavaScript**.
+### Featured build · B0RK3N Invoice Lab
 
-| What it does | What I'm exploring |
-| --- | --- |
-| French and Arabic documents | Interfaces, typography, and right-to-left layouts |
-| TND pricing, discounts, and taxes | Form handling and accurate calculations |
-| Saved documents and payment tracking | Browser storage and application state |
-| Search, filters, and backup restoration | Working with data and validating input |
+A free quote and invoice maker for freelancers. It creates documents in **English, French, or Arabic**, calculates totals in **TND**, tracks payment status, and prints to PDF. Documents are saved in your browser; JSON backup lets you move them between devices.
 
-**[Open Factoura →](https://factoura-freelance.blond-jay-1497.chatgpt.site/)** · **[Read the code →](https://github.com/B0RK3N/factoura)**
+**[Launch the app ↗](https://b0rk3n.github.io)** · **[Explore the code ↗](https://github.com/B0RK3N/B0RK3N.github.io)**
 
-### My learning path
+### What I'm learning
 
-- **HTML & CSS:** clear structure, responsive layouts, and accessible controls.
-- **JavaScript:** events, state, validation, and browser APIs.
-- **Git & GitHub:** keeping a useful history and explaining changes.
-- **Shipping:** testing real interactions and publishing working demos.
+`semantic HTML` · `responsive CSS` · `JavaScript` · `accessibility` · `Git & GitHub` · `testing real user flows`
 
-### What I'm working toward
-
-- [x] Publish a working web app.
-- [x] Share the code and project documentation.
-- [ ] Add more automated checks for important user flows.
-- [ ] Learn backend development and databases.
-- [ ] Build a second project using what I've learned.
-
-### How I approach projects
-
-Start with a small problem, build a useful first version, test it, then improve it. I use AI assistance as part of the process and am working on understanding the code and decisions behind each feature.
-
-Have an idea for Factoura? **[Open an issue](https://github.com/B0RK3N/factoura/issues)** with a suggestion or a reproducible bug.
+I use AI assistance while I build, and I work to understand the code, test the result, and improve it with each iteration. This project is a learning prototype, not a certified invoicing service.
