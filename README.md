@@ -1,26 +1,24 @@
+<img src="assets/banner.svg" alt="B0RK3N — Useful tools. Considered interfaces." width="100%" />
 
+<br />
 
-<p align="center"><strong>Learning web development by building real things.</strong></p>
-<p align="center"><a href="https://b0rk3n.github.io">Live project</a> · <a href="https://github.com/B0RK3N/B0RK3N.github.io">Source code</a> · <a href="https://github.com/B0RK3N?tab=repositories">All repositories</a></p>
+I build web tools that make everyday work simpler. My focus is on clear interfaces, careful details, and learning through projects people can actually use.
 
-## Who's behind the screen?
+### Selected work
 
-I'm **B0RK3N**, learning to turn ideas into useful web projects. I like dark interfaces, sharp details, and software that actually works. I'm building in public so I can learn from each release.
+<a href="https://factoura-freelance.blond-jay-1497.chatgpt.site/"><img src="assets/factoura.svg" alt="Factoura — quotes and invoices for freelancers. Open the app." width="49%" /></a>
+<a href="https://chnowa-naamel.blond-jay-1497.chatgpt.site/#guides"><img src="assets/chnowa.svg" alt="Chnowa Naamel — 20 guides to everyday services in Tunisia. Explore the guides." width="49%" /></a>
 
-```text
-CURRENT SIGNAL  /  HTML · CSS · JavaScript
-CURRENT BUILD   /  B0RK3N Invoice Lab
-NEXT TARGET     /  stronger frontend skills and a first backend
-```
+**[Factoura ↗](https://factoura-freelance.blond-jay-1497.chatgpt.site/)** — Create quotes and invoices in French or Arabic, calculate TND totals, track payments, and print to PDF. Documents stay in your browser, with JSON backups for moving between devices. [Repository](https://github.com/B0RK3N/factoura).
 
-### Featured build · B0RK3N Invoice Lab
+**[Chnowa Naamel? ↗](https://chnowa-naamel.blond-jay-1497.chatgpt.site/#guides)** — 20 practical guides to everyday services in Tunisia, with source links, search, and preparation checklists in Tunisian Arabic and French. [Repository](https://github.com/B0RK3N/chnowa-naamel).
 
-A free quote and invoice maker for freelancers. It creates documents in **English, French, or Arabic**, calculates totals in **TND**, tracks payment status, and prints to PDF. Documents are saved in your browser; JSON backup lets you move them between devices.
+### Working with
 
-**[Launch the app ↗](https://b0rk3n.github.io)** · **[Explore the code ↗](https://github.com/B0RK3N/B0RK3N.github.io)**
+`HTML` &nbsp; `CSS` &nbsp; `JavaScript` &nbsp; `Git`
 
-### What I'm learning
+Responsive layouts, multilingual interfaces, and browser-based tools. I use AI assistance while building, then work through the code and test the user flows.
 
-`semantic HTML` · `responsive CSS` · `JavaScript` · `accessibility` · `Git & GitHub` · `testing real user flows`
+<br />
 
-I use AI assistance while I build, and I work to understand the code, test the result, and improve it with each iteration. This project is a learning prototype, not a certified invoicing service.
+<sub>Independent projects, built and improved one release at a time.</sub>
