@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="300" viewBox="0 0 580 300" role="img" aria-labelledby="title">
+ <title id="title">Factoura — Quotes and invoices for independent work. French, Arabic, TND, PDF.</title>
+ <rect x=".5" y=".5" width="579" height="299" rx="10" fill="#0b0f14" stroke="#2b323a"/>
+ <text x="32" y="43" fill="#c3ae77" font-family="Arial,sans-serif" font-size="12" letter-spacing="3">01 / INDEPENDENT WORK</text>
+ <g transform="translate(450 73)" fill="none" stroke="#58626d" stroke-width="1.5"><path d="M0 0h41l17 17v74H0zM41 0v17h17M13 38h32M13 49h22M13 70h32"/><path d="M13 80h32" stroke="#c3ae77"/></g>
+ <text x="30" y="109" fill="#ecf0f3" font-family="Arial,sans-serif" font-size="43" font-weight="700" letter-spacing="-1">Factoura</text>
+ <text x="32" y="151" fill="#a6afb9" font-family="Arial,sans-serif" font-size="18">Quotes and invoices.</text>
+ <text x="32" y="180" fill="#a6afb9" font-family="Arial,sans-serif" font-size="18">From first draft to payment.</text>
+ <path d="M32 218H548" stroke="#252d36"/>
+ <text x="32" y="259" fill="#7f8b98" font-family="Arial,sans-serif" font-size="12" letter-spacing="1">FR / AR · TND · PDF</text>
+ <text x="548" y="261" text-anchor="end" fill="#c3ae77" font-family="Arial,sans-serif" font-size="16">OPEN APP ↗</text>
+</svg>
