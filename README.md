@@ -1,4 +1,4 @@
-<p align="center"><img src="./assets/banner.svg" alt="B0RK3N — build in the shadows, ship in the open" width="100%"></p>
+
 
 <p align="center"><strong>Learning web development by building real things.</strong></p>
 <p align="center"><a href="https://b0rk3n.github.io">Live project</a> · <a href="https://github.com/B0RK3N/B0RK3N.github.io">Source code</a> · <a href="https://github.com/B0RK3N?tab=repositories">All repositories</a></p>
