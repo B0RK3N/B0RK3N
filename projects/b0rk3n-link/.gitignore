@@ -1,0 +1,6 @@
+.local/
+*.log
+*.rdp
+*.zip
+__pycache__/
+.venv/

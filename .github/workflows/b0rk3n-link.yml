@@ -1,0 +1,24 @@
+name: B0RK3N Link checks
+on:
+  push:
+    paths:
+      - 'projects/b0rk3n-link/**'
+      - '.github/workflows/b0rk3n-link.yml'
+  pull_request:
+    paths:
+      - 'projects/b0rk3n-link/**'
+      - '.github/workflows/b0rk3n-link.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows-checks:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Validate Windows PowerShell sources and security boundaries
+        shell: powershell
+        run: .\projects\b0rk3n-link\tests\Run-Tests.ps1
