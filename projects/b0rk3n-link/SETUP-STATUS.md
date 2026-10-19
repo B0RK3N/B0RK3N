@@ -1,23 +1,22 @@
 # Setup handoff — 19 October 2026
 
-The source is prepared. The actual remote connection is **not active yet**.
+The owner's Windows desktop is configured for private access to the existing Open WebUI assistant. Laptop pairing and a connection from another network remain to be verified.
 
 | Item | State |
 | --- | --- |
-| Desktop-server / laptop-client design | Prepared |
-| Native laptop launcher and setup scripts | Prepared |
-| Private HTTPS, RDP, startup, and removal scripts | Prepared |
-| Unit and syntax checks | 47 checks passed on a hosted Windows runner |
-| Existing desktop Flask entry point | Not inspected; app:app is a configurable default |
-| Tailscale installed and signed in on laptop | Not completed |
-| Tailscale installed and signed in on desktop | Not completed |
-| Desktop RDP and AI startup configuration | Not applied |
-| Cross-network AI message, desktop, file transfer | Not tested |
+| Current desktop assistant | Existing Open WebUI, local tools, Ollama models and conversations retained |
+| Tailscale on desktop | Installed and connected; unattended mode enabled |
+| Private HTTPS | Tailscale Serve forwards to loopback port 8080; health check and actual AI reply passed |
+| Remote Desktop | Enabled with NLA and Tailscale-scoped firewall rules; TCP connection check passed |
+| Automatic AI startup | Limited-privilege Windows sign-in task running |
+| Desktop availability | Plugged-in sleep and hibernation disabled |
+| Source checks | All 48 checks passed locally on Windows |
+| Laptop package | Prepared locally with private client configuration; not published |
+| Laptop connection from another network | Not yet tested |
+| Actual RDP login and file transfer from laptop | Not yet tested |
 
-The laptop environment disconnected while local files were being written, so its local folder may be incomplete. Download the committed project to get the authoritative copy.
+The ExistingServiceStartScript option supports the current assistant without requiring an obsolete Flask directory. Its PowerShell launcher must support -NoBrowser. The Flask setup remains available.
 
-When both computers are available, follow README.md: install/sign in to Tailscale on both, run desktop setup once, import its generated configuration on the laptop, then launch START.cmd. The desktop must stay on and awake.
+Private addresses, local paths, credentials, agent memory, model files, and personal data are excluded from this repository. The laptop package and detailed connection instructions remain on the owner's desktop. Download this source for a generic installation; use the private package for the already-configured laptop client.
 
-No agent memory, models, passwords, tokens, personal files, or generated private configuration were included in the published source.
-
-Validation: [Windows checks — passed](https://github.com/B0RK3N/B0RK3N/actions/runs/39209676719). This validates source parsing, configuration boundaries, RDP settings, and TCP checks; it does not validate the actual desktop installation or remote connection.
+Keep the desktop on and online. The AI starts after Windows sign-in; unattended Tailscale and RDP provide access to sign in remotely after a reboot.

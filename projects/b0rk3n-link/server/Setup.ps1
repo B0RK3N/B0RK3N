@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$AgentFolder = 'C:\B0RK3N-WebAI',
+    [string]$ExistingServiceStartScript = '',
     [ValidatePattern('^[A-Za-z_][A-Za-z0-9_.]*:[A-Za-z_][A-Za-z0-9_]*$')][string]$WsgiApp = 'app:app',
     [ValidateRange(1024, 65535)][int]$AgentPort = 5000,
     [switch]$EnableRemoteDesktop,
@@ -13,15 +14,23 @@ $null = Get-LinkTailscale
 $status = Get-LinkTailscaleStatus
 $serverName = $status.Self.DNSName.TrimEnd('.')
 if (!(Test-LinkHost $serverName)) { throw 'Enable MagicDNS in Tailscale first. A full .ts.net name is required for HTTPS.' }
-$agent = (Resolve-Path -LiteralPath $AgentFolder).Path
-$python = Join-Path $agent '.venv\Scripts\python.exe'
-if (!(Test-Path -LiteralPath $python)) { throw "Expected the existing agent virtual environment at $python. Restore the agent on this desktop first." }
-$moduleFile = ($WsgiApp.Split(':')[0].Replace('.', '\') + '.py')
-$modulePackage = Join-Path ($WsgiApp.Split(':')[0].Replace('.', '\')) '__init__.py'
-if (!(Test-Path -LiteralPath (Join-Path $agent $moduleFile)) -and !(Test-Path -LiteralPath (Join-Path $agent $modulePackage))) {
-    throw "Cannot find the WSGI module for $WsgiApp. Pass -WsgiApp server:app if your Flask file is server.py, for example."
+if ($ExistingServiceStartScript) {
+    $startScript = (Resolve-Path -LiteralPath $ExistingServiceStartScript).Path
+    if ([IO.Path]::GetExtension($startScript) -ne '.ps1') { throw 'The existing service starter must be a PowerShell script supporting -NoBrowser.' }
+    $agent = Split-Path $startScript -Parent
+    $serverConfig = [ordered]@{ mode = 'existingService'; startScript = $startScript; agentFolder = $agent; port = $AgentPort }
+} else {
+    $agent = (Resolve-Path -LiteralPath $AgentFolder).Path
+    $python = Join-Path $agent '.venv\Scripts\python.exe'
+    if (!(Test-Path -LiteralPath $python)) { throw "Expected the existing agent virtual environment at $python. Restore the agent on this desktop first." }
+    $moduleFile = ($WsgiApp.Split(':')[0].Replace('.', '\') + '.py')
+    $modulePackage = Join-Path ($WsgiApp.Split(':')[0].Replace('.', '\')) '__init__.py'
+    if (!(Test-Path -LiteralPath (Join-Path $agent $moduleFile)) -and !(Test-Path -LiteralPath (Join-Path $agent $modulePackage))) {
+        throw "Cannot find the WSGI module for $WsgiApp. Pass -WsgiApp server:app if your Flask file is server.py, for example."
+    }
+    if (Test-LinkTcp '127.0.0.1' $AgentPort) { throw "Port $AgentPort is already in use. Stop the existing agent web server before setup. Ollama can keep running." }
+    $serverConfig = [ordered]@{ agentFolder = $agent; python = $python; wsgiApp = $WsgiApp; port = $AgentPort }
 }
-if (Test-LinkTcp '127.0.0.1' $AgentPort) { throw "Port $AgentPort is already in use. Stop the existing agent web server before setup. Ollama can keep running." }
 $stateDir = Get-LinkStateDirectory
 $stateFile = Join-Path $stateDir 'desktop-state.json'
 $serverConfigFile = Join-Path $stateDir 'server.json'
@@ -53,8 +62,10 @@ if ($RegisterAutoStart -and (Get-ScheduledTask -TaskName $saved.taskName -ErrorA
     throw 'A task named B0RK3N-Link-Agent already exists; it was not overwritten.'
 }
 # Fail before OS changes if production-server dependencies cannot be installed.
-& $python -m pip install --disable-pip-version-check 'waitress>=3.0.2,<4'
-if ($LASTEXITCODE -ne 0) { throw 'Could not install Waitress in the existing agent virtual environment.' }
+if (!$ExistingServiceStartScript) {
+    & $python -m pip install --disable-pip-version-check 'waitress>=3.0.2,<4'
+    if ($LASTEXITCODE -ne 0) { throw 'Could not install Waitress in the existing agent virtual environment.' }
+}
 Save-LinkJson -Value $saved -Path $stateFile
 try {
     # Private to the tailnet. Funnel is never enabled.
@@ -77,7 +88,7 @@ try {
         Write-Host 'Remote Desktop enabled with Network Level Authentication and Tailscale-scoped rules.'
         Write-Host 'Other custom firewall rules, if any, are not audited by this script.'
     }
-    Save-LinkJson -Value ([ordered]@{ agentFolder = $agent; python = $python; wsgiApp = $WsgiApp; port = $AgentPort }) -Path $serverConfigFile
+    Save-LinkJson -Value $serverConfig -Path $serverConfigFile
     if ($RegisterAutoStart) {
         $runner = Join-Path $PSScriptRoot 'Start-Agent.ps1'
         $arguments = '-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $runner + '"'

@@ -17,6 +17,18 @@ $ollamaProcess = $null
 try {
     $ownsMutex = $mutex.WaitOne(0)
     if (!$ownsMutex) { Write-AgentLog 'Another B0RK3N Link supervisor is already running.'; return }
+    if ($config.PSObject.Properties['mode'] -and $config.mode -eq 'existingService') {
+        $principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+        if ($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { throw 'Start the existing AI as your ordinary Windows user, or use the limited-privilege startup task.' }
+        Write-AgentLog 'Starting the existing AI through its own launcher.'
+        & $config.startScript -NoBrowser
+        if (!(Test-LinkTcp '127.0.0.1' $config.port)) { throw 'The existing AI did not open its configured port.' }
+        Write-AgentLog 'Existing AI listener ready.'
+        while ($true) {
+            Start-Sleep -Seconds 30
+            if (!(Test-LinkTcp '127.0.0.1' $config.port)) { throw 'The existing AI stopped; Task Scheduler may restart its launcher.' }
+        }
+    }
     if (Test-LinkTcp '127.0.0.1' $config.port) { throw "Port $($config.port) is already in use. Stop the other web server first." }
     if (!(Test-LinkTcp '127.0.0.1' 11434)) {
         $ollama = Get-Command ollama.exe -ErrorAction SilentlyContinue

@@ -2,9 +2,9 @@
 
 **Your desktop runs the AI. Your laptop goes anywhere.**
 
-A Windows toolkit for reaching an existing Flask/Ollama AI agent and desktop applications through a private Tailscale connection. The laptop runs a native launcher; the desktop keeps the models, memory, and processing.
+A Windows toolkit for reaching an existing local AI service and desktop applications through a private Tailscale connection. Supports Flask/Ollama and an existing Open WebUI installation. The laptop runs a native launcher; the desktop keeps the models, memory, and processing.
 
-> Setup is not yet complete on the owner's computers. The laptop disconnected during development. The source and automated checks are provided here; Tailscale sign-in, desktop setup, and an actual AI/RDP connection still need to be completed on the two computers.
+> See SETUP-STATUS.md for the deployment state. An actual laptop connection must be verified on the second computer.
 
 | Desktop server | Laptop client |
 | --- | --- |
@@ -52,7 +52,21 @@ Keep this project in a permanent folder. Do not move it after registering startu
 
 RDP hosting needs Windows **Pro, Enterprise, Education, or Server** on the desktop. The laptop may use Windows Home. For AI-only access on a Home desktop, omit `-EnableRemoteDesktop`. Use the desktop Windows account password for RDP; a Windows Hello PIN is not necessarily that password. The account must already have remote-login rights. No account or password is created or changed. A desktop RDP session can lock the physical console; it is not shared-screen gaming.
 
+### Desktop with an existing Open WebUI installation
+
+If your current assistant already has a PowerShell launcher supporting `-NoBrowser`, use that launcher instead of the Flask default:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\server\Setup.ps1 -ExistingServiceStartScript 'C:\path\to\Local AI\Start.ps1' -AgentPort 8080 -EnableRemoteDesktop -RegisterAutoStart
+```
+
+Run setup as Administrator. The scheduled AI task runs as the ordinary signed-in user; an existing assistant is never launched with administrator privileges. This mode retains the assistant's runtime, tools, models, and conversations. It uses the assistant's own launcher and does not install Waitress. If the assistant validates browser origins, add the generated HTTPS origin to its allowed origins before restarting it. Setup preserves any pre-existing Tailscale Serve configuration by refusing to overwrite it.
+
 ## Laptop setup
+
+For guided installation, double-click **CONNECT-LAPTOP.cmd**. It installs the official signed Tailscale client if needed, asks you to sign in, reads an existing private client configuration or asks for the desktop address, creates a desktop shortcut, and opens the launcher. Keep the extracted folder in place.
+
+Manual setup:
 
 1. Install Tailscale with `tools\Install-Tailscale.ps1` in an Administrator PowerShell window. Sign in to the same account used on the desktop.
 2. Import the copied desktop configuration with its actual path:
@@ -72,7 +86,7 @@ Headless diagnostics:
 powershell -NoProfile -ExecutionPolicy Bypass -File .\client\Launch.ps1 -Diagnose
 ```
 
-Diagnostics check TCP listeners. A reachable HTTPS port does not prove the Flask backend works. Open the AI and send a message to verify the full path.
+Diagnostics check TCP listeners. A reachable HTTPS port does not prove the AI backend works. Open the AI and send a message to verify the full path.
 
 ## Access and privacy
 

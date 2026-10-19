@@ -13,7 +13,7 @@ I build web tools that make everyday work simpler. My focus is on clear interfac
 
 **[Chnowa Naamel? ↗](https://chnowa-naamel.blond-jay-1497.chatgpt.site/#guides)** — 40 practical guides to everyday services in Tunisia, with official source links, multilingual search, saved checklists, progress filters, and shareable guides in Tunisian Arabic and French. [Repository](https://github.com/B0RK3N/chnowa-naamel).
 
-**[B0RK3N Link ↗](https://github.com/B0RK3N/B0RK3N/tree/main/projects/b0rk3n-link)** — Windows toolkit for private access to a desktop AI agent, Remote Desktop, and file transfer from a laptop. Includes setup, connection checks, startup, and recovery scripts. Device pairing and deployment verification are still required.
+**[B0RK3N Link ↗](https://github.com/B0RK3N/B0RK3N/tree/main/projects/b0rk3n-link)** — Windows toolkit for private access to a desktop AI agent, Remote Desktop, and file transfer from a laptop. Includes setup, connection checks, startup, and recovery scripts. Desktop AI access and startup are configured and verified; laptop pairing remains.
 
 ### Working with
 
